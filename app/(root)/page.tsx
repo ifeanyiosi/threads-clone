@@ -1,10 +1,13 @@
+import PostCard from "@/components/cards/PostCard";
 import { fetchPosts } from "@/lib/actions/post.actions";
 import { UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs";
 
 export default async function Home() {
   const result = await fetchPosts(1, 30);
-  const user = await currentUser()
+  const user = await currentUser();
+
+  console.log(user);
 
   return (
     <>
@@ -26,10 +29,10 @@ export default async function Home() {
                 author={post.author}
                 community={post.community}
                 createdAt={post.createdAT}
-                comments={posts.children}
+                comments={post.children}
                 parentId={post.parentId}
-                key={post._id}
-                currentUserId={user?.id}
+                id={post._id}
+                currentUserId={post.user?.id || ""}
               />
             ))}
           </>
