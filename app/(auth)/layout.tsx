@@ -3,8 +3,9 @@ import { Figtree } from "next/font/google";
 import "../globals.css";
 
 export const metadata = {
-  title: "Threads",
-  description: "A Next.js application clone built by Ifeanyi Osi-Okeke",
+  title: "Ifeanyiosi",
+  description:
+    "A Next.js application that mirrors Threads and Twitter built by Ifeanyi Osi-Okeke",
 };
 
 const figtree = Figtree({ subsets: ["latin"] });
