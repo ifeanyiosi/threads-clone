@@ -10,8 +10,8 @@ import Bottombar from "@/components/shared/Bottombar";
 const figtree = Figtree({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Threads",
-  description: "A Next.js application clone built by Ifeanyi Osi-Okeke",
+  title: "Ifeanyiosi",
+  description: "A Next.js application that mirrors Threads and Twitter built by Ifeanyi Osi-Okeke",
 };
 
 export default function RootLayout({

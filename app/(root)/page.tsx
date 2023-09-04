@@ -15,7 +15,7 @@ export default async function Home() {
 
       <section className="mt-9 flex flex-col gap-10">
         {result.posts.length === 0 ? (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center justify-center w-full h-fit mt-10 gap-2">
             <h1 className="text-white font-bold">Nothing to see here..yet</h1>
             <p className="no-result">
               When they post, their posts will show up here..

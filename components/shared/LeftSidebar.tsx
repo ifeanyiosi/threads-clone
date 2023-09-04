@@ -21,7 +21,9 @@ const LeftSidebar = () => {
 
           return (
             <Link
-              className={`leftsidebar_link ${isActive && "bg-[#26a7de]"}`}
+              className={`leftsidebar_link hover:bg-dark-2 ${
+                isActive && "bg-[#26a7de] hover:bg-[#26a7de]"
+              }`}
               key={link.label}
               href={link.route}
             >
