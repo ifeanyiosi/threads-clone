@@ -39,7 +39,11 @@ const PostCard = ({
 }: Props) => {
   console.log({ author });
   return (
-    <article className="flex w-full flex-col rounded-xl hover:bg-dark-2 cursor-pointer bg-dark-1 border border-dark-3 p-7">
+    <article
+      className={`flex w-full flex-col rounded-xl hover:bg-dark-2 cursor-pointer bg-dark-1 border border-dark-3 p-7 ${
+        isComment ? "px-0 xs:px-7" : "bg-dark-1 p-7"
+      } `}
+    >
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">

@@ -24,7 +24,7 @@ export async function createPost({ text, author, communityId, path }: Params) {
 
     //update user model
     await User.findByIdAndUpdate(author, {
-      $push: { post: createdPost._id },
+      $push: { posts: createdPost._id },
     });
 
     revalidatePath(path);
@@ -101,5 +101,40 @@ export async function fetchPostById(id: string) {
     return post;
   } catch (error: any) {
     throw new Error(`Error fetching post: ${error.message}`);
+  }
+}
+
+export async function addCommentToPost(
+  postId: string,
+  commentText: string,
+  userId: string,
+  path: string
+) {
+  try {
+    //find man post by id
+    const originalPost = await Post.findById(postId);
+    if (!originalPost) {
+      throw new Error("Post not found");
+    }
+
+    //this will create a new post
+    const commentPost = new Post({
+      text: commentText,
+      author: userId,
+      parentId: postId,
+    });
+
+    //save new post
+    const savedCommentPost = await commentPost.save();
+
+    //update original post to include new comment
+    originalPost.children.push(savedCommentPost._id);
+
+    //save original post
+    await originalPost.save();
+
+    revalidatePath(path);
+  } catch (error: any) {
+    throw new Error(`Error adding comment to post ${error.message}`);
   }
 }

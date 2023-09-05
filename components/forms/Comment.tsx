@@ -18,6 +18,7 @@ import Image from "next/image";
 import { Input } from "../ui/input";
 import { CommentValidation } from "@/lib/validations/post";
 import { usePathname, useRouter } from "next/navigation";
+import { addCommentToPost } from "@/lib/actions/post.actions";
 
 interface Props {
   postId: string;
@@ -37,12 +38,14 @@ const Comment = ({ postId, currentUserImg, currentUserId }: Props) => {
   });
 
   const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
-    // await createPost({
-    //   text: values.post,
-    //   author: userId,
-    //   communityId: null,
-    //   path: pathname,
-    // });
+    await addCommentToPost(
+      postId,
+      values.post,
+      JSON.parse(currentUserId),
+      pathname
+    );
+
+    form.reset();
 
     router.push("/");
   };
