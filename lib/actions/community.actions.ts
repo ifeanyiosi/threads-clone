@@ -2,8 +2,8 @@
 
 import { FilterQuery, SortOrder } from "mongoose";
 
-import Community from "../models/community.model";
-import Thread from "../models/post.model";
+import Community from "../models/comunity.model";
+import Post from "../models/post.model";
 import User from "../models/user.model";
 
 import { connectToDB } from "../mongoose";
@@ -282,8 +282,8 @@ export async function deleteCommunity(communityId: string) {
       throw new Error("Community not found");
     }
 
-    // Delete all threads associated with the community
-    await Thread.deleteMany({ community: communityId });
+    // Delete all posts associated with the community
+    await Post.deleteMany({ community: communityId });
 
     // Find all users who are part of the community
     const communityUsers = await User.find({ communities: communityId });
