@@ -20,6 +20,7 @@ import { Blob } from "buffer";
 
 import { usePathname, useRouter, useServerInsertedHTML } from "next/navigation";
 import { updateUser } from "@/lib/actions/user.actions";
+import { useOrganization } from "@clerk/nextjs";
 import { PostValidation } from "@/lib/validations/post";
 import { createPost } from "@/lib/actions/post.actions";
 
@@ -38,6 +39,7 @@ interface Props {
 function CreatePost({ userId }: { userId: string }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { organization } = useOrganization();
 
   const form = useForm({
     resolver: zodResolver(PostValidation),
@@ -51,7 +53,7 @@ function CreatePost({ userId }: { userId: string }) {
     await createPost({
       text: values.post,
       author: userId,
-      communityId: null,
+      communityId: organization ? organization.id : null,
       path: pathname,
     });
 
