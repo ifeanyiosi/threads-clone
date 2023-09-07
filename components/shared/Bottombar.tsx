@@ -20,7 +20,7 @@ const Bottombar = () => {
 
           return (
             <Link
-              className={`bottombar_link ${isActive && "bg-primary-500"}`}
+              className={`bottombar_link ${isActive && "bg-[#26a7de]"}`}
               key={link.label}
               href={link.route}
             >

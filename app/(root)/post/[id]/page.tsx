@@ -6,7 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const page = async ({ params }: { params: { id: string } }) => {
+async function page({ params }: { params: { id: string } }) {
   if (!params.id) return null;
   const user = await currentUser();
   if (!user) return null;
@@ -56,6 +56,6 @@ const page = async ({ params }: { params: { id: string } }) => {
       </div>
     </section>
   );
-};
+}
 
 export default page;
