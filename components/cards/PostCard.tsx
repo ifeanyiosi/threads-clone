@@ -1,3 +1,4 @@
+import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -15,8 +16,8 @@ interface Props {
   community: {
     id: string;
     name: string;
-    image: string | null;
-  };
+    image: string;
+  } | null;
   comments: {
     author: {
       image: string;
@@ -106,7 +107,7 @@ const PostCard = ({
               </div>
 
               {isComment && comments.length > 0 && (
-                <Link href={`/thread/${id}`}>
+                <Link href={`/post/${id}`}>
                   <p className="mt-1 text-subtle-medium text-gray-1">
                     {comments.length} replies
                   </p>
@@ -115,7 +116,28 @@ const PostCard = ({
             </div>
           </div>
         </div>
+
+        {/* delete post */}
+        {/* show comment logos */}
       </div>
+      {!isComment && community && (
+        <Link
+          className="mt-5 flex items-center"
+          href={`/communities/${community.id}`}
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)}
+            {" "} - {community.name} Community
+          </p>
+
+          <Image
+            src={community.image}
+            width={14}
+            height={14}
+            alt={community.name}
+          />
+        </Link>
+      )}
     </article>
   );
 };
