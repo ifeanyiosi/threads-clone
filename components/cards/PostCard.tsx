@@ -119,25 +119,25 @@ const PostCard = ({
 
         {/* delete post */}
         {/* show comment logos */}
-
-        {!isComment && community && (
-          <Link
-            className="mt-5 flex items-center"
-            href={`/communities/${community.id}`}
-          >
-            <p className="text-subtle-medium text-gray-1">
-              {formatDateString(createdAt)} - {community.name} Community
-            </p>
-
-            <Image
-              src={community.image}
-              width={14}
-              height={14}
-              alt={community.name}
-            />
-          </Link>
-        )}
       </div>
+      {!isComment && community && (
+        <Link
+          className="mt-5 flex items-center"
+          href={`/communities/${community.id}`}
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)}
+            {" "} - {community.name} Community
+          </p>
+
+          <Image
+            src={community.image}
+            width={14}
+            height={14}
+            alt={community.name}
+          />
+        </Link>
+      )}
     </article>
   );
 };
